@@ -1,0 +1,21 @@
+-- ------------------------------------------
+-- JSharp's SQL Loader control file template
+-- ------------------------------------------
+
+LOAD DATA
+INFILE './reptiles.csv'
+BADFILE './badreptiles.bad'
+DISCARDFILE './badreptiles.dsc'
+
+-- If there was already data in the table, this should be APPEND INTO TABLE and not INSERT INTO TABLE
+INSERT INTO TABLE reptiles
+
+-- Note to self: FIELD specifies field position, data type, delimiters. 
+-- Full reference: RTFM:
+-- https://docs.oracle.com/database/121/SUTIL/GUID-DB309002-461D-42F7-8C94-727B32FA8B85.htm#SUTIL006
+-- WITHOUT EMBEDDED means no record terminators are embedded in the data values
+-- Basically... no comma's attached. 
+FIELDS CSV WITHOUT EMBEDDED
+
+-- column name from create table script
+(reptile_name)
